@@ -1,0 +1,22 @@
+# docker-compose.yml
+services:
+  # O Cérebro Persistente (Banco Relacional)
+  postgres:
+    image: postgres:16-alpine
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: bun_user
+      POSTGRES_PASSWORD: bun_password
+      POSTGRES_DB: elysia_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  # A Memória Rápida (Cache/Sessões) - Usaremos na Aula 16
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:

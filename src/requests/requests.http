@@ -1,0 +1,38 @@
+### GET ALL USERS
+
+GET http://localhost:3000/api/users HTTP/1.1
+
+### GET CURRENT USER
+
+GET http://localhost:3000/api/users/me HTTP/1.1
+
+### REGISTER USER
+
+POST http://localhost:3000/api/auth/sign-up HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Lilian Esther",
+    "username": "lili",
+    "password": "s3cr3t",
+    "email": "lili@example.com"
+}
+
+### LOGIN
+
+POST http://localhost:3000/api/auth/sign-in HTTP/1.1
+content-type: application/json
+
+{
+    "email": "lili@example.com",
+    "password": "s3cr3t"
+}
+
+### LOGOUT
+
+POST http://localhost:3000/api/auth/logout HTTP/1.1
+
+### DASHBOARD
+
+GET http://localhost:3000/api/dashboard HTTP/1.1
+
