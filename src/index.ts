@@ -29,19 +29,26 @@ const server = new Elysia({
 	)
 	.onError(({ code, error, status }) => {
 		console.log("Code>>", code);
-		console.log("Error>>>", (error as Error)?.message);
+		console.log("Error>>>", error);
+
 		switch (code) {
+			case 401:
+				return status(401, { message: "Not Authenticated" });
+			case 403:
+				return status(403, { message: "Forbidden" });
 			case "PARSE":
-				return status(400, { message: error.message });
+				return status(400, { message: error.toString() });
 			case "INVALID_COOKIE_SIGNATURE":
-				return status(400, { message: error.message });
+				return status(400, { message: error.toString() });
 			case "VALIDATION":
-				return status(400, { message: error.message });
+				return status(400, { message: error.toString() });
 			case "NOT_FOUND":
-				return status(404, { message: error.message });
+				return status(404, { message: error.toString() });
+			case "INTERNAL_SERVER_ERROR":
+				return status(500, { message: error.toString() });
 			default:
 				return status(500, {
-					message: (error as Error)?.message || "Internal Server Error",
+					message: error.toString() || "Internal Server Error",
 				});
 		}
 	})
