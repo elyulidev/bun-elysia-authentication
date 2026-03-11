@@ -33,7 +33,7 @@ const server = new Elysia({
 
 		switch (code) {
 			case 401:
-				return status(401, { message: "Not Authenticated" });
+				return status(401, { message: "Unauthorized" });
 			case 403:
 				return status(403, { message: "Forbidden" });
 			case "PARSE":
